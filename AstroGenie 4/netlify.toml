@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-backend-url.replit.app/api/:splat"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+  
+  # Important: Forward cookies for authentication
+  [redirects.headers]
+    Cookie = {/:cookie/ = ":cookie"}
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
